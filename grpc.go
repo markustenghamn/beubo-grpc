@@ -1,4 +1,4 @@
-package beubo
+package main
 
 import (
 	"github.com/golang/protobuf/proto"
@@ -20,10 +20,16 @@ const (
 
 var (
 	responseChannel chan pb.PluginMessage
-	requestChannel chan pb.PluginMessage
+	requestChannel  chan pb.PluginMessage
 )
 
 type server struct{}
+
+func Register() map[string]string {
+	return map[string]string{
+		"name": "Beubo gRPC",
+	}
+}
 
 func (s *server) Connect(stream pb.BeuboGRPC_ConnectServer) error {
 	for {
