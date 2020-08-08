@@ -3,6 +3,7 @@ syntax = "proto3";
 option java_multiple_files = true;
 option java_package = "beubo";
 option java_outer_classname = "BeuboProto";
+option go_package = "github.com/markustenghamn/beubo_grpc/grpc;grpc";
 
 import "google/protobuf/any.proto";
 

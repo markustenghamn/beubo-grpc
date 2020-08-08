@@ -3,7 +3,7 @@ package beubo
 import (
 	"github.com/golang/protobuf/proto"
 	"github.com/golang/protobuf/ptypes/any"
-	pb "github.com/markustenghamn/beubo-grpc/grpc"
+	pb "github.com/markustenghamn/beubo_grpc/grpc"
 	"google.golang.org/grpc"
 	"io"
 	"log"
@@ -12,10 +12,15 @@ import (
 
 // Grpc
 
-// protoc -I grpc --go_out=plugins=grpc:grpc grpc/beubo.proto
+// protoc -I grpc --go_out=./grpc grpc/beubo.proto
 
 const (
 	grpcPort = ":50051"
+)
+
+var (
+	responseChannel chan pb.PluginMessage
+	requestChannel chan pb.PluginMessage
 )
 
 type server struct{}
@@ -94,12 +99,7 @@ func (s *server) Connect(stream pb.BeuboGRPC_ConnectServer) error {
 
 func (s *server) Requests(pluginMessage *pb.PluginMessage, stream pb.BeuboGRPC_RequestsServer) error {
 	log.Printf("Plugin registered to receive requests: %s (%s)\n", pluginMessage.Name, pluginMessage.Identifier)
-	for {
-		request := <-requestChannel
-		if err := stream.Send(&request); err != nil {
-			return err
-		}
-	}
+	return nil
 }
 
 func grpcInit() {
