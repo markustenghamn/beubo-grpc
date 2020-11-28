@@ -3,7 +3,7 @@ package main
 import (
 	"github.com/golang/protobuf/proto"
 	"github.com/golang/protobuf/ptypes/any"
-	pb "github.com/markustenghamn/beubo_grpc/grpc"
+	pb "github.com/uberswe/beubo_grpc/grpc"
 	"google.golang.org/grpc"
 	"io"
 	"log"
