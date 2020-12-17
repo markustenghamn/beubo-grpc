@@ -29,6 +29,8 @@ type server struct{}
 func Register() map[string]string {
 	return map[string]string{
 		"name": "Beubo gRPC",
+		// identifier should be a unique identifier used to differentiate this plugin from other plugins
+		"identifier": "beubo_grpc",
 	}
 }
 
